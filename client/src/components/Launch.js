@@ -6,7 +6,7 @@ export default function Launch({ transaction }) {
   return (
     <div
       className={css.flexRow}
-      style={{ backgroundColor: type === '+' ? '#9AECDB' : '#ff6b81' }}
+      style={{ backgroundColor: type === '+' ? '#9AECDB' : '#fab1a0' }}
     >
       <div className={css.divFlex}>
         <div className={css.divDay}>

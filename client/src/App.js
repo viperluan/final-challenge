@@ -5,7 +5,9 @@ import PERIODS from './helpers/periods';
 
 import Header from './components/Header';
 import DateSelector from './components/DateSelector';
+import Summary from './components/Summary';
 import Launches from './components/Launches';
+import FilterAndInclude from './components/FilterAndInclude';
 
 export default function App() {
   const [currentPeriod, setCurrentPeriod] = useState(PERIODS[18]);
@@ -41,6 +43,8 @@ export default function App() {
         onChangePeriod={handleChangePeriod}
         allPeriods={PERIODS}
       />
+      <Summary transactions={transactions} />
+      <FilterAndInclude />
       <Launches transactions={transactions} />
     </div>
   );
