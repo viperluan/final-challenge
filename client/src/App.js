@@ -12,6 +12,9 @@ import FilterAndInclude from './components/FilterAndInclude';
 export default function App() {
   const [currentPeriod, setCurrentPeriod] = useState(PERIODS[18]);
   const [transactions, setTransactions] = useState([]);
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
+  const [inputFilter, setInputFilter] = useState('');
+  const [isFilter, setIsFilter] = useState(false);
 
   const handleChangePeriod = (newPeriod) => {
     setCurrentPeriod(newPeriod);
@@ -23,7 +26,7 @@ export default function App() {
 
   useEffect(() => {
     const year = currentPeriod.slice(3);
-    const month = currentPeriod.slice(1, 2);
+    const month = currentPeriod.slice(0, 2);
     const url = 'http://localhost:3001/api/transaction';
 
     const getByDate = async () => {
@@ -35,6 +38,24 @@ export default function App() {
     getByDate();
   }, [currentPeriod]);
 
+  const handleChangeInputFilter = (newText) => {
+    setInputFilter(newText);
+  };
+
+  useEffect(() => {
+    setIsFilter(inputFilter !== '' ? true : false);
+  }, [inputFilter]);
+
+  useEffect(() => {
+    if (isFilter) {
+      const filter = transactions.filter(({ description }) => {
+        return description.toLowerCase().includes(inputFilter.toLowerCase());
+      });
+
+      setFilteredTransactions(filter);
+    }
+  }, [inputFilter, isFilter, transactions]);
+
   return (
     <div className="container">
       <Header />
@@ -43,9 +64,21 @@ export default function App() {
         onChangePeriod={handleChangePeriod}
         allPeriods={PERIODS}
       />
-      <Summary transactions={transactions} />
-      <FilterAndInclude />
-      <Launches transactions={transactions} />
+      <Summary
+        transactions={transactions}
+        filteredTransactions={filteredTransactions}
+        isFilter={isFilter}
+      />
+      <FilterAndInclude
+        onChangeInputFilter={handleChangeInputFilter}
+        inputFilter={inputFilter}
+      />
+      <Launches
+        transactions={transactions}
+        filteredTransactions={filteredTransactions}
+        isFilter={isFilter}
+        inputFilter={inputFilter}
+      />
     </div>
   );
 }
