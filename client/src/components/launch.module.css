@@ -41,6 +41,19 @@
 }
 
 .divValue {
-  margin-right: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-right: 20px;
   font-size: 1.5rem;
+}
+
+.edit {
+  margin-right: 20px;
+}
+
+.spanValue {
+  margin-right: 180px;
 }

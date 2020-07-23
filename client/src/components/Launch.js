@@ -18,7 +18,12 @@ export default function Launch({ transaction }) {
         </div>
       </div>
       <div className={css.divValue}>
-        <span>{`R$ ${value},00`}</span>
+        <span className={css.spanValue}>{`R$ ${value},00`}</span>
+
+        <span>
+          <i className={`material-icons ${css.edit}`}>edit</i>
+          <i className="material-icons">delete</i>
+        </span>
       </div>
     </div>
   );
