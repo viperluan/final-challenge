@@ -25,8 +25,6 @@ const deleteById = async (req, res) => {
   try {
     const data = await TransactionModel.findByIdAndDelete({ _id: id });
 
-    console.log(data);
-
     res.send(data);
   } catch (error) {
     res.status(500).send({ message: error });
