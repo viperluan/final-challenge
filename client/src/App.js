@@ -33,6 +33,7 @@ export default function App() {
       const resData = await axios.get(`${url}/${year}/${month}`);
 
       setTransactions(resData.data);
+      setFilteredTransactions(resData.data);
     };
 
     getByDate();
@@ -65,7 +66,6 @@ export default function App() {
         allPeriods={PERIODS}
       />
       <Summary
-        transactions={transactions}
         filteredTransactions={filteredTransactions}
         isFilter={isFilter}
       />
