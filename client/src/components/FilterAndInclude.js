@@ -8,9 +8,15 @@ export default function FilterAndInclude({ onChangeInputFilter, inputFilter }) {
   const handleInputFilter = (newText) => {
     onChangeInputFilter(newText);
   };
+
+  const handleButtonClick = (value) => {};
+
   return (
     <div className={css.flexRow}>
-      <Button />
+      <Button
+        buttonName={'+ NOVO LANÇAMENTO'}
+        onButtonClick={handleButtonClick}
+      />
       <Filter onChangeFilter={handleInputFilter} inputFilter={inputFilter} />
     </div>
   );

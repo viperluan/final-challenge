@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import M from 'materialize-css';
 import PERIODS from './helpers/periods';
 
 import Header from './components/Header';
@@ -16,20 +15,46 @@ export default function App() {
   const [inputFilter, setInputFilter] = useState('');
   const [isFilter, setIsFilter] = useState(false);
 
+  const handleChangeInputFilter = (newText) => {
+    setInputFilter(newText);
+  };
+
   const handleChangePeriod = (newPeriod) => {
-    setCurrentPeriod(newPeriod);
+    let periodIndex = PERIODS.indexOf(currentPeriod);
+
+    switch (newPeriod) {
+      case '<':
+        setCurrentPeriod(
+          PERIODS[periodIndex !== 0 ? --periodIndex : periodIndex]
+        );
+        break;
+      case '>':
+        setCurrentPeriod(
+          PERIODS[
+            periodIndex !== PERIODS.length - 1 ? ++periodIndex : periodIndex
+          ]
+        );
+        break;
+      default:
+        setCurrentPeriod(
+          PERIODS.filter((period) => {
+            return period === newPeriod;
+          }).toString()
+        );
+        break;
+    }
   };
 
   useEffect(() => {
-    M.AutoInit();
-  }, []);
+    setIsFilter(inputFilter !== '' ? true : false);
+  }, [inputFilter]);
 
   useEffect(() => {
-    const year = currentPeriod.slice(3);
-    const month = currentPeriod.slice(0, 2);
-    const url = 'http://localhost:3001/api/transaction';
-
     const getByDate = async () => {
+      const year = currentPeriod.slice(3);
+      const month = currentPeriod.slice(0, 2);
+      const url = 'http://localhost:3001/api/transaction';
+
       const resData = await axios.get(`${url}/${year}/${month}`);
 
       setTransactions(resData.data);
@@ -39,14 +64,6 @@ export default function App() {
     getByDate();
   }, [currentPeriod]);
 
-  const handleChangeInputFilter = (newText) => {
-    setInputFilter(newText);
-  };
-
-  useEffect(() => {
-    setIsFilter(inputFilter !== '' ? true : false);
-  }, [inputFilter]);
-
   useEffect(() => {
     if (isFilter) {
       const filter = transactions.filter(({ description }) => {
@@ -55,7 +72,7 @@ export default function App() {
 
       setFilteredTransactions(filter);
     }
-  }, [inputFilter, isFilter, transactions]);
+  }, [isFilter, inputFilter, transactions]);
 
   return (
     <div className="container">
@@ -63,7 +80,7 @@ export default function App() {
       <DateSelector
         currentPeriod={currentPeriod}
         onChangePeriod={handleChangePeriod}
-        allPeriods={PERIODS}
+        periods={PERIODS}
       />
       <Summary
         filteredTransactions={filteredTransactions}

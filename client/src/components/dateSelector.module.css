@@ -1,0 +1,18 @@
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+}
+
+.divSelect {
+  text-align-last: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.selectDate {
+  width: 200px;
+}
