@@ -2,12 +2,11 @@ import React from 'react';
 import css from './launch.module.css';
 import Action from './Action';
 
-export default function Launch({ transaction }) {
+export default function Launch({ transaction, onActionButtonClick }) {
   const { day, category, description, value, type, _id } = transaction;
 
   const handleClickButton = (type, id) => {
-    console.log(type);
-    console.log(id);
+    onActionButtonClick(type, id);
   };
 
   return (

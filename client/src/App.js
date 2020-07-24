@@ -8,6 +8,8 @@ import Summary from './components/Summary';
 import Launches from './components/Launches';
 import FilterAndInclude from './components/FilterAndInclude';
 
+const URL = 'http://localhost:3001/api/transaction';
+
 export default function App() {
   const [currentPeriod, setCurrentPeriod] = useState(PERIODS[18]);
   const [transactions, setTransactions] = useState([]);
@@ -17,6 +19,20 @@ export default function App() {
 
   const handleChangeInputFilter = (newText) => {
     setInputFilter(newText);
+  };
+
+  const handleActionEdit = (id) => {
+    console.log(id);
+  };
+
+  const handleActionDelete = (id) => {
+    axios.delete(`${URL}/${id}`);
+
+    const asDeleted = filteredTransactions.filter((deal) => {
+      return deal._id !== id;
+    });
+
+    setFilteredTransactions(asDeleted);
   };
 
   const handleChangePeriod = (newPeriod) => {
@@ -53,9 +69,8 @@ export default function App() {
     const getByDate = async () => {
       const year = currentPeriod.slice(3);
       const month = currentPeriod.slice(0, 2);
-      const url = 'http://localhost:3001/api/transaction';
 
-      const resData = await axios.get(`${url}/${year}/${month}`);
+      const resData = await axios.get(`${URL}/${year}/${month}`);
 
       setTransactions(resData.data);
       setFilteredTransactions(resData.data);
@@ -91,10 +106,9 @@ export default function App() {
         inputFilter={inputFilter}
       />
       <Launches
-        transactions={transactions}
         filteredTransactions={filteredTransactions}
-        isFilter={isFilter}
-        inputFilter={inputFilter}
+        onEdit={handleActionEdit}
+        onDelete={handleActionDelete}
       />
     </div>
   );

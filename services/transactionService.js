@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Types.ObjectId;
 
 // Aqui havia um erro difícil de pegar. Importei como "transactionModel",
 // com "t" minúsculo. No Windows, isso não faz diferença. Mas como no Heroku
@@ -20,4 +19,18 @@ const findByDate = async (req, res) => {
   }
 };
 
-module.exports = { findByDate };
+const deleteById = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const data = await TransactionModel.findByIdAndDelete({ _id: id });
+
+    console.log(data);
+
+    res.send(data);
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+};
+
+module.exports = { findByDate, deleteById };
