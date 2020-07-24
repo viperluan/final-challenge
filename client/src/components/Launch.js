@@ -1,8 +1,15 @@
 import React from 'react';
 import css from './launch.module.css';
+import Action from './Action';
 
 export default function Launch({ transaction }) {
-  const { day, category, description, value, type } = transaction;
+  const { day, category, description, value, type, _id } = transaction;
+
+  const handleClickButton = (type, id) => {
+    console.log(type);
+    console.log(id);
+  };
+
   return (
     <div
       className={css.flexRow}
@@ -19,10 +26,9 @@ export default function Launch({ transaction }) {
       </div>
       <div className={css.divValue}>
         <span className={css.spanValue}>{`R$ ${value},00`}</span>
-
         <span>
-          <i className={`material-icons ${css.edit}`}>edit</i>
-          <i className="material-icons">delete</i>
+          <Action onClickButton={handleClickButton} type={'edit'} id={_id} />
+          <Action onClickButton={handleClickButton} type={'delete'} id={_id} />
         </span>
       </div>
     </div>
