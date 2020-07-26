@@ -9,8 +9,6 @@ import Launches from './components/Launches';
 import FilterAndInclude from './components/FilterAndInclude';
 import ModalLaunch from './components/ModalLaunch';
 
-const BASE_URL = 'http://localhost:3001/api/transaction';
-
 export default function App() {
   const [currentPeriod, setCurrentPeriod] = useState(PERIODS[18]);
   const [transactions, setTransactions] = useState([]);
