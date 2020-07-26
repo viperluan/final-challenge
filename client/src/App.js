@@ -9,7 +9,7 @@ import Launches from './components/Launches';
 import FilterAndInclude from './components/FilterAndInclude';
 import ModalLaunch from './components/ModalLaunch';
 
-const BASE_URL = 'https://pcf-final-challenge.herokuapp.com';
+const BASE_URL = 'https://pcf-final-challenge.herokuapp.com/api/transaction';
 
 export default function App() {
   const [currentPeriod, setCurrentPeriod] = useState(PERIODS[18]);
