@@ -157,6 +157,7 @@ export default function ModalLaunch(props) {
                     <input
                       type="number"
                       min="1"
+                      step="0.01"
                       placeholder={`Ex: "1200"`}
                       value={value}
                       onChange={(event) => setValue(event.target.value)}

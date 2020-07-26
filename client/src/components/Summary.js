@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import css from './summary.module.css';
 
+import numberFormat from '../helpers/numberFormat';
+
 export default function Summary(props) {
   const { filteredTransactions } = props;
 
@@ -61,21 +63,23 @@ export default function Summary(props) {
       <span>
         <b>
           Receitas:{' '}
-          <span style={{ color: '#218c74' }}>{`R$ ${filteredIncomes},00`}</span>
+          <span style={{ color: '#218c74' }}>
+            {numberFormat(filteredIncomes)}
+          </span>
         </b>
       </span>
       <span>
         <b>
           Despesas:{' '}
           <span style={{ color: '#b33939' }}>
-            {`R$ ${filteredExpenses},00`}
+            {numberFormat(filteredExpenses)}
           </span>
         </b>
       </span>
       <span>
         <b>
           Saldo:{' '}
-          <span style={{ color: balanceColor }}>{`R$ ${balance},00`}</span>
+          <span style={{ color: balanceColor }}>{numberFormat(balance)}</span>
         </b>
       </span>
     </div>

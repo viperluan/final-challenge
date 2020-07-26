@@ -39,8 +39,11 @@ export default function App() {
 
   useEffect(() => {
     if (inputFilter !== '') {
-      const filter = transactions.filter(({ description }) => {
-        return description.toLowerCase().includes(inputFilter.toLowerCase());
+      const filter = transactions.filter(({ description, category }) => {
+        return (
+          description.toLowerCase().includes(inputFilter.toLowerCase()) ||
+          category.toLowerCase().includes(inputFilter.toLowerCase())
+        );
       });
 
       setFilteredTransactions(filter);

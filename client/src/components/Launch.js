@@ -2,6 +2,8 @@ import React from 'react';
 import css from './launch.module.css';
 import Action from './Action';
 
+import numberFormat from '../helpers/numberFormat';
+
 export default function Launch({ transaction, onActionButtonClick }) {
   const { day, category, description, value, type, _id } = transaction;
 
@@ -24,7 +26,7 @@ export default function Launch({ transaction, onActionButtonClick }) {
         </div>
       </div>
       <div className={css.divValue}>
-        <span className={css.spanValue}>{`R$ ${value},00`}</span>
+        <span className={css.spanValue}>{numberFormat(value)}</span>
         <span>
           <Action onClickButton={handleClickButton} type={'edit'} id={_id} />
           <Action onClickButton={handleClickButton} type={'delete'} id={_id} />
