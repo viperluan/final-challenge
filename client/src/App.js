@@ -9,9 +9,7 @@ import Launches from './components/Launches';
 import FilterAndInclude from './components/FilterAndInclude';
 import ModalLaunch from './components/ModalLaunch';
 
-const dotenv = require('dotenv');
-dotenv.config();
-const { BASE_URL } = process.env;
+const BASE_URL = 'https://pcf-final-challenge.herokuapp.com';
 
 export default function App() {
   const [currentPeriod, setCurrentPeriod] = useState(PERIODS[18]);
