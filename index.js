@@ -14,7 +14,7 @@ mongoose.set('useFindAndModify', false);
 dotenv.config();
 
 const app = express();
-app.use(cors('http://localhost:3000'));
+app.use(cors('https://pcf-final-challenge.herokuapp.com'));
 app.use(express.json());
 
 /**

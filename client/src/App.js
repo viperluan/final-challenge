@@ -9,6 +9,10 @@ import Launches from './components/Launches';
 import FilterAndInclude from './components/FilterAndInclude';
 import ModalLaunch from './components/ModalLaunch';
 
+const dotenv = require('dotenv');
+dotenv.config();
+const { BASE_URL } = process.env;
+
 export default function App() {
   const [currentPeriod, setCurrentPeriod] = useState(PERIODS[18]);
   const [transactions, setTransactions] = useState([]);
