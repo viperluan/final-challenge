@@ -4,18 +4,22 @@ import Filter from './Filter';
 
 import css from './filterAndInclue.module.css';
 
-export default function FilterAndInclude({ onChangeInputFilter, inputFilter }) {
+export default function FilterAndInclude(props) {
+  const { onChangeInputFilter, inputFilter, onClickNewLaunch } = props;
+
   const handleInputFilter = (newText) => {
     onChangeInputFilter(newText);
   };
 
-  const handleButtonClick = (value) => {};
+  const handleButtonNewLaunch = () => {
+    onClickNewLaunch(null);
+  };
 
   return (
     <div className={css.flexRow}>
       <Button
         buttonName={'+ NOVO LANÇAMENTO'}
-        onButtonClick={handleButtonClick}
+        onButtonClick={handleButtonNewLaunch}
       />
       <Filter onChangeFilter={handleInputFilter} inputFilter={inputFilter} />
     </div>

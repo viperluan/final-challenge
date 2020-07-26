@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import css from './summary.module.css';
 
 export default function Summary(props) {
-  const { filteredTransactions, isFilter } = props;
+  const { filteredTransactions } = props;
 
   const [filteredIncomes, setFilteredIncomes] = useState(0);
   const [filteredExpenses, setFilteredExpenses] = useState(0);
@@ -51,7 +51,7 @@ export default function Summary(props) {
 
     setFilteredExpenses(0);
     setFilteredIncomes(0);
-  }, [filteredTransactions, isFilter]);
+  }, [filteredTransactions]);
 
   return (
     <div className={css.flexRow}>

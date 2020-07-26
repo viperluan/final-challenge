@@ -31,4 +31,54 @@ const deleteById = async (req, res) => {
   }
 };
 
-module.exports = { findByDate, deleteById };
+const postNew = async (req, res) => {
+  const {
+    category,
+    day,
+    description,
+    month,
+    type,
+    value,
+    year,
+    yearMonth,
+    yearMonthDay,
+  } = req.body;
+
+  try {
+    const transaction = new TransactionModel({
+      category,
+      day,
+      description,
+      month,
+      type,
+      value,
+      year,
+      yearMonth,
+      yearMonthDay,
+    });
+
+    await transaction.save();
+
+    res.send(transaction);
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+};
+
+const patchEdit = async (req, res) => {
+  const { _id } = req.body;
+
+  try {
+    const data = await TransactionModel.findByIdAndUpdate(
+      { _id: _id },
+      req.body,
+      { new: true }
+    );
+
+    res.send(data);
+  } catch (error) {
+    res.status(500).send({ message: error });
+  }
+};
+
+module.exports = { findByDate, deleteById, postNew, patchEdit };

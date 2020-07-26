@@ -5,6 +5,8 @@ const routes = require('./routes/routes');
 const path = require('path');
 const dotenv = require('dotenv');
 
+mongoose.set('useFindAndModify', false);
+
 /**
  * Faz a leitura do arquivo
  * ".env" por padrão
@@ -12,7 +14,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors('http://localhost:3000'));
 app.use(express.json());
 
 /**

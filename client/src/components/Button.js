@@ -8,7 +8,9 @@ export default function Button({ buttonName, onButtonClick }) {
   return (
     <div>
       <button
-        className="waves-effect waves-light btn"
+        className={`waves-effect waves-light btn ${
+          buttonName === 'X' ? 'red' : ''
+        }`}
         value={buttonName}
         onClick={handleButtonClick}
       >

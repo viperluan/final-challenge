@@ -1,0 +1,47 @@
+.headerStyle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.flexRow {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+
+  border: solid 1px lightgrey;
+  border-radius: 4px;
+}
+
+.spanFontSize {
+  font-size: 2rem;
+}
+
+.divRadioButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.divLabelValue {
+  width: 40%;
+}
+
+.divValue {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.divDate {
+  width: 40%;
+}
